@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block title %}My To-Do{% endblock %}
+{% block content %}
+<h2>My To-Do List</h2>
+<form action="{{ url_for('add_todo') }}" method="POST">
+    <input type="text" name="content" placeholder="Enter new to-do" required>
+    <button type="submit">Add</button>
+</form>
+<ul>
+    {% for todo in todos %}
+        <li>
+            <form action="{{ url_for('update_todo', todo_id=todo.id) }}" method="POST" style="display:inline;">
+                <input type="checkbox" name="completed" onchange="this.form.submit()" {% if todo.completed %}checked{% endif %}>
+            </form>
+            {{ todo.content }}
+            <form action="{{ url_for('delete_todo', todo_id=todo.id) }}" method="POST" style="display:inline;">
+                <button
+::contentReference[oaicite:22]{index=22} 
+    {% endblock %} type="submit">Delete</button>
+            </form>
+        </li>
+    {% endfor %}
+</ul>
